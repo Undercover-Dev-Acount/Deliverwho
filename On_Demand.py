@@ -10,8 +10,20 @@ sandwiches = ['BLT', ' Egg and Cress', ' Chicken and Stuffing', ' Tuna Sweetcorn
 snacks = ['Cheese and Onion Crisps', 'Ready Salted Crisps', 'Prawn Cocktail Crisps', 'McCoys Steak Crisps', 'Sour Cream Pringles']
 confec = ['KitKat 4', 'KitKat Chunky', 'Snickers', 'Mars Bar', 'Lion Bar', 'Kinder Bueno', 'Twix', 'Chocolate Chip Cookie', 'Sugared Ring Donut']
 
-## Login Screen
+## Order Dictionary
 
+Order = {
+    'customer name' : 'customer name',
+    'address' : 'address',
+    'phone number' : 'phone number',
+    'order status' : 'Pending',
+}
+
+## Order List
+
+orders = [] 
+
+## Login Screen
 name = input('Username:\n')
 password = getpass('Password:\n')
 
@@ -77,6 +89,17 @@ if User_passwords[name]==password:
         elif choice == '3':
             print('Welcome to the Deliverwho? ordering system.\n')
             
+            for key in Order.keys():
+                
+                if key == 'order status':
+                    Order['order stauts'] = 'Placed'
+                    break
+                    
+                Order[key] = input(f'please enter user {key}\n')
+            orders.append(Order)
+            print('Order placed!')
+            print(*orders)
+        
         elif choice == '0':
             exitloop = True
             exit()
