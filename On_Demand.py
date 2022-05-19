@@ -2,7 +2,7 @@
 import printfunc
 from getpass import getpass
 from passwords import User_passwords 
-
+import json
 ## Product names
 soft_drinks = ["Lemonade", " Coke", " Orange Juice", " Water", 'Dr Pepper', 'Fanta', 'Lucozade']
 adult_drinks = ["Vodka Lemonade", " Rum and Coke", " Pint", " House Red", " House White"]
@@ -20,9 +20,14 @@ Order = {
 }
 
 ## Order List
+# orders = [] 
 
-orders = [] 
+# order_list = {}
+# list_name = 'orders.json'
 
+# with open(list_name) as file:
+
+#     order_list = json.load(file)
 ## Login Screen
 name = input('Username:\n')
 password = getpass('Password:\n')
@@ -87,6 +92,13 @@ if User_passwords[name]==password:
             print('Deliverwho v.0.0.1')
             input('Press enter to return to main menu')
         elif choice == '3':
+            order_list = {}
+            list_name = 'orders.json'
+
+            with open(list_name) as file:
+
+                order_list = json.load(file)
+            
             print('Welcome to the Deliverwho? ordering system.\n')
             
             for key in Order.keys():
@@ -96,10 +108,20 @@ if User_passwords[name]==password:
                     break
                     
                 Order[key] = input(f'please enter user {key}\n')
-            orders.append(Order)
+            order_list['orders'].append(Order)
             print('Order placed!')
-            print(*orders)
+            
+            orders_ext = 'orders.json'
+            with open(orders_ext) as file:
+                data = json.load(file)
+            
+
+            export = 'orders.json'
+            with open(export,'w') as file:
+                new = json.dumps(order_list, indent='   ')
+                file.write(new)
         
+
         elif choice == '0':
             exitloop = True
             exit()
