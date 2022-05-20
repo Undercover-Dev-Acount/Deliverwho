@@ -19,15 +19,6 @@ Order = {
     'order status' : 'Pending',
 }
 
-## Order List
-# orders = [] 
-
-# order_list = {}
-# list_name = 'orders.json'
-
-# with open(list_name) as file:
-
-#     order_list = json.load(file)
 ## Login Screen
 name = input('Username:\n')
 password = getpass('Password:\n')
