@@ -26,7 +26,7 @@ name = input('Username:\n')
 password = getpass('Password:\n')
 
 if User_passwords[name]==password:
-
+    printfunc.clear_term()
 
     ## Main Menu
     print('Welcome to \033[1m Deliverwho? \033[0m')
@@ -41,6 +41,7 @@ if User_passwords[name]==password:
         '0) Exit' '\033[0m')
 
         menu_choice = input()
+        printfunc.clear_term()
         if menu_choice == '1':
             print('Please use the terminal to browse the menus:\n'
             '\n''\033[1m'
@@ -52,6 +53,7 @@ if User_passwords[name]==password:
             '0) Exit' '\033[0m')
             
             menu_choice =input('Please enter your desired number below \n')
+            printfunc.clear_term()
             if menu_choice == '1':
                 print(*sandwiches, sep = ',')
                 
@@ -68,6 +70,7 @@ if User_passwords[name]==password:
             elif menu_choice == '4':
                 
                 age = int(input(f'How old are you?\n'))
+                printfunc.clear_term()
                 if age < 18:
                     continue
                 
