@@ -14,4 +14,8 @@ To run this program, ensure you have Python3 installed and download both on_dema
 If you want to avoid a headache, don't let people teach you how to use GitHub, or anything about source control, despite how advantageous it is. It has been haunting me for over a day now, and I'm thinking of getting a priest to free me from this curse. # Robs-Project
 
 Day two, or is it? It feels so familiar, like I've been here before. I can't have. I must be tired.
-Day three, the skies have greyed as do the hairs on my head. Memories thin like whisps of smoke from a long smothered fire. But one flame burns strong, prickling at the skin. Git, say the whipsers. I have no choice but to go toward it, the only light in my world... 
+
+Day three, the skies have greyed as do the hairs on my head. Memories thin like whisps of smoke from a long smothered fire. But one flame burns strong, prickling at the skin. Git, say the whipsers. I have no choice but to go toward it, the only light in my world. 
+
+Day four? Did I skip some days? Perhaps my memory truly is a long gone skill of the past. Afterall, what use is a memory of the old world when this has born a new. I used to see skin, in all its shades, every day. Now all we, I, have are features formed of paper. They, too, fade almost as fast as the light in the eyes of the faces they captured. Birdsong is the only talk of the world now, foreign to me, alone. Though I am not sure the language of my peers would register any stronger were I to hear it outside of my dreams. All I have now are echoes of the past. 
+

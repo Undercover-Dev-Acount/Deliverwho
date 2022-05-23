@@ -1,3 +1,5 @@
+import os
+
 def print_list(list):
         index = 0
         for x in list:
@@ -22,3 +24,6 @@ def item_options(list):
             print_list(list)
             del_entry = int(input('Select an item number to delete\n'))
             list.remove(del_entry)
+
+def clear_term(): #clears the terminal
+    os.system('clear')

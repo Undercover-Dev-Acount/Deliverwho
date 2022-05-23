@@ -2,7 +2,8 @@
 import printfunc
 from getpass import getpass
 from passwords import User_passwords 
-
+import json
+import random 
 ## Product names
 soft_drinks = ["Lemonade", " Coke", " Orange Juice", " Water", 'Dr Pepper', 'Fanta', 'Lucozade']
 adult_drinks = ["Vodka Lemonade", " Rum and Coke", " Pint", " House Red", " House White"]
@@ -17,18 +18,15 @@ Order = {
     'address' : 'address',
     'phone number' : 'phone number',
     'order status' : 'Pending',
+    'courier' : 'none',
 }
-
-## Order List
-
-orders = [] 
 
 ## Login Screen
 name = input('Username:\n')
 password = getpass('Password:\n')
 
 if User_passwords[name]==password:
-
+    printfunc.clear_term()
 
     ## Main Menu
     print('Welcome to \033[1m Deliverwho? \033[0m')
@@ -42,8 +40,9 @@ if User_passwords[name]==password:
         '3) Ordering\n'
         '0) Exit' '\033[0m')
 
-        choice = input()
-        if choice == '1':
+        menu_choice = input()
+        printfunc.clear_term()
+        if menu_choice == '1':
             print('Please use the terminal to browse the menus:\n'
             '\n''\033[1m'
             '1) Sandwiches \n'
@@ -53,54 +52,87 @@ if User_passwords[name]==password:
             '5) Confectionary\n'
             '0) Exit' '\033[0m')
             
-            choice =input('Please enter your desired number below \n')
-            if choice == '1':
+            menu_choice =input('Please enter your desired number below \n')
+            printfunc.clear_term()
+            if menu_choice == '1':
                 print(*sandwiches, sep = ',')
                 
                 printfunc.item_options(sandwiches)
             
-            elif choice =='2':
+            elif menu_choice =='2':
                 print(*snacks, sep = ',')
 
                 printfunc.item_options(snacks)
-            elif choice == '3':
+            elif menu_choice == '3':
                 print(*soft_drinks, sep = ',')
 
                 printfunc.item_options(soft_drinks)
-            elif choice == '4':
+            elif menu_choice == '4':
                 
                 age = int(input(f'How old are you?\n'))
+                printfunc.clear_term()
                 if age < 18:
                     continue
                 
                 print(*adult_drinks, sep = ',')
 
                 printfunc.item_options(adult_drinks)
-            elif choice == '5':
+            elif menu_choice == '5':
                 print(*confec, sep = ',')
 
                 printfunc.item_options(confec)
-            elif choice == '0':
+            elif menu_choice == '0':
                 continue
             
-        elif choice == '2':
+        elif menu_choice == '2':
             print('Deliverwho v.0.0.1')
             input('Press enter to return to main menu')
-        elif choice == '3':
+        elif menu_choice == '3':
+            order_list = {}
+            list_name = 'orders.json'
+
+            with open(list_name) as file:
+
+                order_list = json.load(file)
+            
+            courier_list = 'couriers.json'
+
+            with open(courier_list) as file:
+
+                courier_list = json.load(file)
+                courier_list2 = courier_list['Couriers']
+            for key in courier_list2.keys():
+                courier_list = [key]
+
+
+
+
+            rcourier = random.choice(courier_list)
+            
             print('Welcome to the Deliverwho? ordering system.\n')
             
             for key in Order.keys():
                 
-                if key == 'order status':
-                    Order['order stauts'] = 'Placed'
+                if key == 'order status'or key == 'courier':
+                    Order['order status'] = 'Placed' 
+                    Order['courier'] = rcourier
                     break
-                    
                 Order[key] = input(f'please enter user {key}\n')
-            orders.append(Order)
+            order_list['orders'].append(Order)
             print('Order placed!')
-            print(*orders)
+            
+            orders_ext = 'orders.json'
+            with open(orders_ext) as file:
+                data = json.load(file)
+            
+
+            export = 'orders.json'
+            with open(export,'w') as file:
+                new = json.dumps(order_list, indent='   ')
+                file.write(new)
         
-        elif choice == '0':
+
+        elif menu_choice == '0':
             exitloop = True
             exit()
        
