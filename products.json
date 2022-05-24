@@ -20,7 +20,7 @@
             "House Red" : 4.00, 
             "House White" : 4.00
         }
-    }
+    },
 
     {
         "sandwiches" : {
@@ -30,12 +30,31 @@
             "Tuna Sweetcorn" : 1.55, 
             "Ham and Cheese" : 2.30, 
             "Smoked Salmon and Cream Cheese" : 2.80
-
         }
+    },
 
+    {
+        "snacks" : {
+            "Cheese and Onion Crisps" : 0.90,
+            "Ready Salted Crisps" : 0.90,
+            "Prawn Cocktail Crisps" : 0.90,
+            "McCoys Steak Crisps" : 1.10,
+            "Sour Cream Pringles" : 1.50
+        }
+    },
 
-
-
+    {
+        "confec" : {
+            "KitKat 4" : 0.55,
+            "KitKat Chunky" : 0.70,
+            "Snickers" : 0.75, 
+            "Mars Bar" : 0.75,
+            "Lion Bar" : 0.75, 
+            "Kinder Bueno" : 0.85, 
+            "Twix" : 0.55, 
+            "Chocolate Chip Cookie" : 0.55,
+            "Sugared Ring Donut" : 0.55
+        }
     }
 
 
