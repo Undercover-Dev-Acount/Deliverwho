@@ -19,4 +19,4 @@ Day three, the skies have greyed as do the hairs on my head. Memories thin like 
 
 Day four? Did I skip some days? Perhaps my memory truly is a long gone skill of the past. Afterall, what use is a memory of the old world when this has born a new. I used to see skin, in all its shades, every day. Now all we, I, have are features formed of paper. They, too, fade almost as fast as the light in the eyes of the faces they captured. Birdsong is the only talk of the world now, foreign to me, alone. Though I am not sure the language of my peers would register any stronger were I to hear it outside of my dreams. All I have now are echoes of the past. 
 
-Day...night...oh. Does it matter anymore? Screaming into the void, and worst of all, it refuses to scream back. I have decided to look for peace in religion. Who do you pray to when there is no voices in the dark? The Git Kata. 
+Day...night...oh. Does it matter anymore? Screaming into the void, and worst of all, it refuses to scream back. I have decided to look for peace in religion. Who do you pray to when there is no voices in the dark? The Git Kata... 
