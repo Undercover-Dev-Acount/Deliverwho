@@ -1,14 +1,52 @@
 {
+    "products": [
+    {
+        "soft_drinks" : {
+            "Lemonade" : 2.50,
+            "Coke" : 2.50,
+            "Orange Juice" : 2.00, 
+            "Water" : 1.50, 
+            "Dr Pepper" : 2.50,
+            "Fanta" : 2.50, 
+            "Lucozade" : 1.99
+        }
+    },
+    
+    {
+        "adult_drinks" : {
+            "Vodka Lemonade" : 4.70, 
+            "Rum and Coke" : 5.00, 
+            "Pint" : 3.50, 
+            "House Red" : 4.00, 
+            "House White" : 4.00
+        }
+    }
 
-    "soft_drinks":{
-        "Lemonade" : 2.50,
-        "Coke" : 2.50,
-        
+    {
+        "sandwiches" : {
+            "BLT" : 2.55, 
+            "Egg and Cress" : 1.55, 
+            "Chicken and Stuffing" : 2.55, 
+            "Tuna Sweetcorn" : 1.55, 
+            "Ham and Cheese" : 2.30, 
+            "Smoked Salmon and Cream Cheese" : 2.80
+
+        }
 
 
 
 
     }
+
+
+
+]
+    
+
+
+
+
+
 
 
 
