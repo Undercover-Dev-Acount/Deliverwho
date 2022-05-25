@@ -1,5 +1,5 @@
-## Functions
-import printfunc as printfunc
+## Imports
+import functions as func
 from getpass import getpass
 from passwords import User_passwords 
 import json
@@ -25,8 +25,9 @@ Order = {
 name = input('Username:\n')
 password = getpass('Password:\n')
 
-if User_passwords[name]==password:
-    printfunc.clear_term()
+## Compares name key and password value to external dictionary to grant access
+if User_passwords[name]==password: 
+    func.clear_term()
 
     ## Main Menu
     print('Welcome to \033[1m Deliverwho? \033[0m')
@@ -41,7 +42,7 @@ if User_passwords[name]==password:
         '0) Exit' '\033[0m')
 
         menu_choice = input()
-        printfunc.clear_term()
+        func.clear_term()
         if menu_choice == '1':
             print('Please use the terminal to browse the menus:\n'
             '\n''\033[1m'
@@ -53,34 +54,34 @@ if User_passwords[name]==password:
             '0) Exit' '\033[0m')
             
             menu_choice =input('Please enter your desired number below \n')
-            printfunc.clear_term()
+            func.clear_term()
             if menu_choice == '1':
                 print(*sandwiches, sep = ',')
                 
-                printfunc.item_options(sandwiches)
+                func.item_options(sandwiches)
             
             elif menu_choice =='2':
                 print(*snacks, sep = ',')
 
-                printfunc.item_options(snacks)
+                func.item_options(snacks)
             elif menu_choice == '3':
                 print(*soft_drinks, sep = ',')
 
-                printfunc.item_options(soft_drinks)
+                func.item_options(soft_drinks)
             elif menu_choice == '4':
                 
                 age = int(input(f'How old are you?\n'))
-                printfunc.clear_term()
+                func.clear_term()
                 if age < 18:
                     continue
                 
                 print(*adult_drinks, sep = ',')
 
-                printfunc.item_options(adult_drinks)
+                func.item_options(adult_drinks)
             elif menu_choice == '5':
                 print(*confec, sep = ',')
 
-                printfunc.item_options(confec)
+                func.item_options(confec)
             elif menu_choice == '0':
                 continue
             
