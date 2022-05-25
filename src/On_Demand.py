@@ -1,5 +1,5 @@
 ## Functions
-import printfunc
+import printfunc as printfunc
 from getpass import getpass
 from passwords import User_passwords 
 import json
@@ -89,25 +89,26 @@ if User_passwords[name]==password:
             input('Press enter to return to main menu')
         elif menu_choice == '3':
             order_list = {}
-            list_name = 'orders.json'
+            list_name = 'Data/orders.json'
 
             with open(list_name) as file:
 
                 order_list = json.load(file)
             
-            courier_list = 'couriers.json'
+            courier_list = 'Data/couriers.json'
 
             with open(courier_list) as file:
-
+                courier_list3 = []
                 courier_list = json.load(file)
                 courier_list2 = courier_list['Couriers']
+                print(courier_list2)
             for key in courier_list2.keys():
-                courier_list = [key]
+                courier_list3.append(key)
 
 
 
-
-            rcourier = random.choice(courier_list)
+            print(courier_list3)
+            rcourier = random.choice(courier_list3)
             
             print('Welcome to the Deliverwho? ordering system.\n')
             
@@ -121,12 +122,12 @@ if User_passwords[name]==password:
             order_list['orders'].append(Order)
             print('Order placed!')
             
-            orders_ext = 'orders.json'
+            orders_ext = 'Data/orders.json'
             with open(orders_ext) as file:
                 data = json.load(file)
             
 
-            export = 'orders.json'
+            export = 'Data/orders.json'
             with open(export,'w') as file:
                 new = json.dumps(order_list, indent='   ')
                 file.write(new)
