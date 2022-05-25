@@ -1,0 +1,13 @@
+{
+        "confec" : {
+            "KitKat 4" : 0.55,
+            "KitKat Chunky" : 0.70,
+            "Snickers" : 0.75, 
+            "Mars Bar" : 0.75,
+            "Lion Bar" : 0.75, 
+            "Kinder Bueno" : 0.85, 
+            "Twix" : 0.55, 
+            "Chocolate Chip Cookie" : 0.55,
+            "Sugared Ring Donut" : 0.55
+        }
+}

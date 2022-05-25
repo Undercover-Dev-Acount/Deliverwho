@@ -1,0 +1,10 @@
+{
+        "sandwiches" : {
+            "BLT" : 2.55, 
+            "Egg and Cress" : 1.55, 
+            "Chicken and Stuffing" : 2.55, 
+            "Tuna Sweetcorn" : 1.55, 
+            "Ham and Cheese" : 2.30, 
+            "Smoked Salmon and Cream Cheese" : 2.80
+        }
+}

@@ -1,0 +1,9 @@
+{
+        "adult_drinks" : {
+            "Vodka Lemonade" : 4.70, 
+            "Rum and Coke" : 5.00, 
+            "Pint" : 3.50, 
+            "House Red" : 4.00, 
+            "House White" : 4.00
+        }
+}
