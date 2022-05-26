@@ -21,3 +21,5 @@ Day four? Did I skip some days? Perhaps my memory truly is a long gone skill of 
 
 Day...night...oh. Does it matter anymore? Screaming into the void, and worst of all, it refuses to scream back. I have decided to look for peace in religion. Who do you pray to when there is no voices in the dark? The Git Kata...
 
+
+Will this torture ever end, cycles and circles, pain and hurt. Still I hold faith in The Git Kata
