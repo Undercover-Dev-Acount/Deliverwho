@@ -102,13 +102,10 @@ if User_passwords[name]==password:
                 courier_list3 = []
                 courier_list = json.load(file)
                 courier_list2 = courier_list['Couriers']
-                print(courier_list2)
+               
             for key in courier_list2.keys():
                 courier_list3.append(key)
-
-
-
-            print(courier_list3)
+            
             rcourier = random.choice(courier_list3)
             
             print('Welcome to the Deliverwho? ordering system.\n')
