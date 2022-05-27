@@ -19,6 +19,7 @@ Order = {
     'phone number' : 'phone number',
     'order status' : 'Pending',
     'courier' : 'none',
+    'order number' : 0
 }
 
 ## Login Screen
@@ -110,27 +111,81 @@ if User_passwords[name]==password:
             
             print('Welcome to the Deliverwho? ordering system.\n')
             
-            for key in Order.keys():
+            ord_choice = input('1) Create Order\n2) Edit Order\n3) Delete Order\n')
+
+            if ord_choice == '1':           
+                for key in Order.keys():
+                    
+                    if key == 'order status'or key == 'courier':
+                        Order['order status'] = 'Placed' 
+                        Order['courier'] = rcourier
+                        Order['order number'] = random.randint(1, 1000)
+                        break
+                    Order[key] = input(f'please enter user {key}\n')
+                order_list['orders'].append(Order)
                 
-                if key == 'order status'or key == 'courier':
-                    Order['order status'] = 'Placed' 
-                    Order['courier'] = rcourier
-                    break
-                Order[key] = input(f'please enter user {key}\n')
-            order_list['orders'].append(Order)
-            print('Order placed!')
-            
-            orders_ext = 'Data/orders.json'
-            with open(orders_ext) as file:
-                data = json.load(file)
-            
+                
+                orders_ext = 'Data/orders.json'
+                with open(orders_ext) as file:
+                    data = json.load(file)
+                
 
-            export = 'Data/orders.json'
-            with open(export,'w') as file:
-                new = json.dumps(order_list, indent='   ')
-                file.write(new)
+                export = 'Data/orders.json'
+                with open(export,'w') as file:
+                    new = json.dumps(order_list, indent='   ')
+                    file.write(new)
+            if ord_choice == '2':
+                
+                order_list = {}
+                list_name = 'Data/orders.json'
+
+                with open(list_name) as file:
+
+                    order_list = json.load(file)
+                for key in order_list['orders']:
+                    index = order_list['orders'].index(key)
+                    print(index, sep= ',')
+                    edit_choice = int(input('Choose an order number to edit'))
+                    if edit_choice < len(order_list['orders']):
+                        for key2 in order_list['orders'][index]:
+                    
+                            if key2 == 'order status'or key2 == 'courier'or key2 == 'order number':
+                                continue
+                                
+                        order_list['orders'][index][key2] = input(f'please enter user {key2}\n')
+                export = 'Data/orders.json'
+                with open(export,'w') as file:
+                    new = json.dumps(order_list, indent='   ')
+                    file.write(new)
+
+
+            if ord_choice == '3':
+
+                order_list = {}
+                list_name = 'Data/orders.json'
+
+                with open(list_name) as file:
+
+                    order_list = json.load(file)
+                for key in order_list['orders']:
+                    index = order_list['orders'].index(key)
+                    print(index, sep= ',')
+                try:
+                    del_choice = int(input('Choose an order index to delete or press enter to return to main menu'))
+                except:
+                    continue
+                if del_choice < len(order_list['orders']):
+                    order_list['orders'].pop(del_choice)
+                
+                export = 'Data/orders.json'
+                with open(export,'w') as file:
+                    new = json.dumps(order_list, indent='   ')
+                    file.write(new)
+
+                       
+                        
         
-
+        
         elif menu_choice == '0':
             exitloop = True
             exit()
