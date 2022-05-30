@@ -23,3 +23,6 @@ Day...night...oh. Does it matter anymore? Screaming into the void, and worst of 
 
 
 Will this torture ever end, cycles and circles, pain and hurt. Still I hold faith in The Git Kata
+
+My faith has been strained over these last days, cold and alone. But in the distance I feel the ever growing warmth of the Kata.
+
