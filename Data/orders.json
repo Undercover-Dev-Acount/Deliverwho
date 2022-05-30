@@ -15,6 +15,14 @@
          "order status": "Placed",
          "courier": "Drew",
          "order number": 289
+      },
+      {
+         "customer name": "Klaudia",
+         "address": "here",
+         "phone number": "idklol",
+         "order status": "Placed",
+         "courier": "Allan",
+         "order number": 792
       }
    ]
 }
