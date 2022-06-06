@@ -36,6 +36,53 @@ if User_passwords[name]==password:
 
     exitloop = False
     while exitloop == False:
+        
+        ## Importing Inventory files, converting to lists. 
+    #     sanwiches_dict = {}
+    #     sandwiches = 'Data/sandwiches.json'
+
+    #     with open(sandwiches) as file:
+
+    #         sandwiches_dict = json.load(file)
+        
+    # #------------------------------------------------------------------#
+
+    #     snacks_dict = {}
+    #     snacks = 'Data/snacks.json'
+
+    #     with open(snacks) as file:
+
+    #         snacks_dict = json.load(file)
+
+    # #------------------------------------------------------------------#
+
+    #     confec_dict = {}
+    #     confec = 'Data/confec.json'
+
+    #     with open(confec) as file:
+
+    #         confec_dict = json.load(file)
+        
+    # #------------------------------------------------------------------#
+
+    #     soft_drinks_dict = {}
+    #     soft_drinks = 'Data/soft-drinks.json'
+
+    #     with open(soft_drinks) as file:
+
+    #         soft_drinks_dict = json.load(file)
+
+    # #------------------------------------------------------------------#
+
+    #     adult_drinks_dict = {}
+    #     adult_drinks = 'Data/adult-drinks.json'
+
+    #     with open(adult_drinks) as file:
+
+    #         adult_drinks_dict = json.load(file)
+
+    #------------------------------------------------------------------#        
+
         print('\n''\033[1m'
         '1) Inventory Management \n'
         '2) Version Information\n'
@@ -70,15 +117,16 @@ if User_passwords[name]==password:
 
                 func.item_options(soft_drinks)
             elif menu_choice == '4':
-                
-                age = int(input(f'How old are you?\n'))
-                func.clear_term()
-                if age < 18:
-                    continue
-                
-                print(*adult_drinks, sep = ',')
+    
+                age = int
+                age_check = func.age_check(age,18)
+                if age_check == True:
+                    
+                    print(*adult_drinks, sep = ',')
 
-                func.item_options(adult_drinks)
+                    func.item_options(adult_drinks)
+                else:
+                    continue
             elif menu_choice == '5':
                 print(*confec, sep = ',')
 
@@ -145,12 +193,12 @@ if User_passwords[name]==password:
                 for key in order_list['orders']:
                     index = order_list['orders'].index(key)
                     print(index, sep= ',')
-                    edit_choice = int(input('Choose an order number to edit'))
-                    if edit_choice < len(order_list['orders']):
-                        for key2 in order_list['orders'][index]:
+                edit_choice = int(input('Choose an order number to edit'))
+                if edit_choice < len(order_list['orders']):
+                    for key2 in order_list['orders'][index]:
                     
-                            if key2 == 'order status'or key2 == 'courier'or key2 == 'order number':
-                                continue
+                        if key2 == 'order status'or key2 == 'courier'or key2 == 'order number':
+                            continue
                                 
                         order_list['orders'][index][key2] = input(f'please enter user {key2}\n')
                 export = 'Data/orders.json'
