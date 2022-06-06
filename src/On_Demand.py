@@ -1,5 +1,5 @@
 ## Imports
-import functions as func
+import My_Functions.functions as func
 from getpass import getpass
 from passwords import User_passwords 
 import json
