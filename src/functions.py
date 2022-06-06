@@ -1,4 +1,5 @@
 import os
+import products
 
 def print_list(list):
         index = 0
@@ -12,7 +13,8 @@ def item_options(list):
     choice = input()
     if choice == '1':
             new_entry =input('please type the product name you would like to add\n')
-            list.append(new_entry)
+            price = float(input('please type the price of the item'))
+            list[new_entry] = price
         
     elif choice == '2':
            
@@ -27,3 +29,17 @@ def item_options(list):
 
 def clear_term(): #clears the terminal
     os.system('clear')
+
+def age_check(age, min_age):
+        min_age = 18
+        try:
+                age = int(input('How old are you?'))
+        except:
+                print('You have not entered an age')
+                return False
+
+        if age < min_age: 
+                return False
+        else: 
+                return True
+        
