@@ -14,7 +14,7 @@ class Product:
 
     def __init__(self, name: str, price: float):
         self.name = name
-        self.price = ()
+        self.price = price
 
 ## Method
     def multiple(self):
@@ -26,8 +26,9 @@ class Sandwich(Product):
         super().__init__(name, price)
 
 class Soft_drinks(Product):
-    def __init__(self, name: str, price: float, size: int):
+    def __init__(self, name: str, price: float):
         super().__init__(name, price)
+        
 
 class Snacks(Product):
     def __init__(self, name: str, price: float):
@@ -40,3 +41,5 @@ class Adult_drinks(Product):
 class Confec(Product):
     def __init__(self, name: str, price: float):
         super().__init__(name, price)
+
+
