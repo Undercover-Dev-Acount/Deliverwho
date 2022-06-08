@@ -26,3 +26,5 @@ Will this torture ever end, cycles and circles, pain and hurt. Still I hold fait
 My faith has been strained over these last days, cold and alone. But in the distance I feel the ever growing warmth of the Kata.
 
 I have become lost in the sauce of the kata. 
+
+Heeeeelllllpppppp
