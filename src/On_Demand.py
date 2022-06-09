@@ -4,8 +4,20 @@ from getpass import getpass
 from passwords import User_passwords 
 import json
 import random 
+from dotenv import load_dotenv
+import os
+import pymysql
+from prettytable import from_db_cursor
+
+## DB Declaration
+load_dotenv()
+host = os.environ.get("mysql_host")
+user = os.environ.get("mysql_user")
+password = os.environ.get("mysql_pass")
+database = os.environ.get("mysql_db")
+
 ## Product names
-soft_drinks = ["Lemonade", " Coke", " Orange Juice", " Water", 'Dr Pepper', 'Fanta', 'Lucozade']
+
 adult_drinks = ["Vodka Lemonade", " Rum and Coke", " Pint", " House Red", " House White"]
 sandwiches = ['BLT', ' Egg and Cress', ' Chicken and Stuffing', ' Tuna Sweetcorn', ' Ham and Cheese', ' Smoked Salmon and Cream Cheese']
 snacks = ['Cheese and Onion Crisps', 'Ready Salted Crisps', 'Prawn Cocktail Crisps', 'McCoys Steak Crisps', 'Sour Cream Pringles']
@@ -104,10 +116,13 @@ if User_passwords[name]==password:
             menu_choice =input('Please enter your desired number below \n')
             func.clear_term()
             if menu_choice == '1':
-                print(*sandwiches, sep = ',')
+                connection = func.get_DB()
                 
-                func.item_options(sandwiches)
-            
+                #Displays the sandwich data, followed by the list of options to add, edit, delete. 
+                func.print_from_DB('Sandwiches')
+                
+                func.item_options('Sandwiches')
+                func.close_DB
             elif menu_choice =='2':
                 print(*snacks, sep = ',')
 
