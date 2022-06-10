@@ -16,13 +16,6 @@ user = os.environ.get("mysql_user")
 password = os.environ.get("mysql_pass")
 database = os.environ.get("mysql_db")
 
-## Product names
-
-adult_drinks = ["Vodka Lemonade", " Rum and Coke", " Pint", " House Red", " House White"]
-sandwiches = ['BLT', ' Egg and Cress', ' Chicken and Stuffing', ' Tuna Sweetcorn', ' Ham and Cheese', ' Smoked Salmon and Cream Cheese']
-snacks = ['Cheese and Onion Crisps', 'Ready Salted Crisps', 'Prawn Cocktail Crisps', 'McCoys Steak Crisps', 'Sour Cream Pringles']
-confec = ['KitKat 4', 'KitKat Chunky', 'Snickers', 'Mars Bar', 'Lion Bar', 'Kinder Bueno', 'Twix', 'Chocolate Chip Cookie', 'Sugared Ring Donut']
-
 ## Order Dictionary
 
 Order = {
@@ -49,52 +42,7 @@ if User_passwords[name]==password:
     exitloop = False
     while exitloop == False:
         
-        ## Importing Inventory files, converting to lists. 
-    #     sanwiches_dict = {}
-    #     sandwiches = 'Data/sandwiches.json'
-
-    #     with open(sandwiches) as file:
-
-    #         sandwiches_dict = json.load(file)
-        
-    # #------------------------------------------------------------------#
-
-    #     snacks_dict = {}
-    #     snacks = 'Data/snacks.json'
-
-    #     with open(snacks) as file:
-
-    #         snacks_dict = json.load(file)
-
-    # #------------------------------------------------------------------#
-
-    #     confec_dict = {}
-    #     confec = 'Data/confec.json'
-
-    #     with open(confec) as file:
-
-    #         confec_dict = json.load(file)
-        
-    # #------------------------------------------------------------------#
-
-    #     soft_drinks_dict = {}
-    #     soft_drinks = 'Data/soft-drinks.json'
-
-    #     with open(soft_drinks) as file:
-
-    #         soft_drinks_dict = json.load(file)
-
-    # #------------------------------------------------------------------#
-
-    #     adult_drinks_dict = {}
-    #     adult_drinks = 'Data/adult-drinks.json'
-
-    #     with open(adult_drinks) as file:
-
-    #         adult_drinks_dict = json.load(file)
-
-    #------------------------------------------------------------------#        
-
+            
         print('\n''\033[1m'
         '1) Inventory Management \n'
         '2) Version Information\n'
@@ -124,33 +72,55 @@ if User_passwords[name]==password:
                 func.item_options('Sandwiches')
                 func.close_DB
             elif menu_choice =='2':
-                print(*snacks, sep = ',')
-
-                func.item_options(snacks)
+                connection = func.get_DB()
+                
+                #Displays the soft drink data, followed by the list of options to add, edit, delete. 
+                func.print_from_DB('Snacks')
+                
+                func.item_options('Snacks')
+                func.close_DB
             elif menu_choice == '3':
-                print(*soft_drinks, sep = ',')
+                connection = func.get_DB()
+                
+                #Displays the soft drink data, followed by the list of options to add, edit, delete. 
+                func.print_from_DB('Soft_Drinks')
+                
+                func.item_options('Soft_Drinks')
+                func.close_DB
 
-                func.item_options(soft_drinks)
+                
             elif menu_choice == '4':
     
                 age = int
                 age_check = func.age_check(age,18)
                 if age_check == True:
                     
-                    print(*adult_drinks, sep = ',')
+                    connection = func.get_DB()
+                
+                    #Displays the soft drink data, followed by the list of options to add, edit, delete. 
+                    func.print_from_DB('Adult_Drinks')
+                    
+                    func.item_options('Adult_Drinks')
+                    func.close_DB
 
-                    func.item_options(adult_drinks)
+                
                 else:
                     continue
             elif menu_choice == '5':
-                print(*confec, sep = ',')
+                connection = func.get_DB()
+                
+                #Displays the soft drink data, followed by the list of options to add, edit, delete. 
+                func.print_from_DB('Confec')
+                
+                func.item_options('Confec')
+                func.close_DB
 
-                func.item_options(confec)
+                
             elif menu_choice == '0':
                 continue
             
         elif menu_choice == '2':
-            print('Deliverwho v.0.0.1')
+            print('Deliverwho v.0.9.9')
             input('Press enter to return to main menu')
         elif menu_choice == '3':
             order_list = {}
