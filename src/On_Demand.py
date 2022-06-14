@@ -70,7 +70,7 @@ if User_passwords[name]==password:
                 func.print_from_DB('Sandwiches')
                 
                 func.item_options('Sandwiches')
-                func.close_DB
+                func.close_DB()
             elif menu_choice =='2':
                 connection = func.get_DB()
                 
@@ -78,7 +78,7 @@ if User_passwords[name]==password:
                 func.print_from_DB('Snacks')
                 
                 func.item_options('Snacks')
-                func.close_DB
+                func.close_DB()
             elif menu_choice == '3':
                 connection = func.get_DB()
                 
@@ -86,7 +86,7 @@ if User_passwords[name]==password:
                 func.print_from_DB('Soft_Drinks')
                 
                 func.item_options('Soft_Drinks')
-                func.close_DB
+                func.close_DB(connection)
 
                 
             elif menu_choice == '4':
@@ -101,7 +101,7 @@ if User_passwords[name]==password:
                     func.print_from_DB('Adult_Drinks')
                     
                     func.item_options('Adult_Drinks')
-                    func.close_DB
+                    func.close_DB(connection)
 
                 
                 else:
@@ -113,7 +113,7 @@ if User_passwords[name]==password:
                 func.print_from_DB('Confec')
                 
                 func.item_options('Confec')
-                func.close_DB
+                func.close_DB(connection)
 
                 
             elif menu_choice == '0':

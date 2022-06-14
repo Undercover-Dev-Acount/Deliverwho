@@ -32,7 +32,7 @@ def get_DB():
         except:
                 print("Can't connect to database")
                 return 0
-        cursor = connection.cursor
+        
 
 def close_DB(connection):
         connection.close()
