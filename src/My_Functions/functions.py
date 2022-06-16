@@ -1,9 +1,9 @@
 import os
-# import products
 import pymysql
 from prettytable import from_db_cursor
 from dotenv import load_dotenv
 import random 
+import sys
 
 ## DB Declaration
 load_dotenv()
@@ -34,14 +34,16 @@ def get_DB():
                 print("Can't connect to database")
                 return 0
         
-
+##===========================Connection Close and Commits===========================================
 def close_DB(connection):
         connection.close()
 
 def commit_DB(connection):
         connection.commit()
 
+##==========================DB Functions============================================================
 
+## Insert ----------------------
 def insert_to_DB(table_name, product_name, price):
         cursor = connection.cursor()
 
@@ -49,6 +51,7 @@ def insert_to_DB(table_name, product_name, price):
         val = (product_name, price)
         cursor.execute(sql, val)
 
+## Delete ----------------------
 def delete_from_DB(table_name, product_ID):
         cursor = connection.cursor()
 
@@ -56,6 +59,8 @@ def delete_from_DB(table_name, product_ID):
         
         cursor.execute(sql)
 
+
+## Update Price ------------------------
 def update_price_DB(table_name, product_ID, price):
         cursor = connection.cursor()
 
@@ -63,6 +68,7 @@ def update_price_DB(table_name, product_ID, price):
         
         cursor.execute(sql)
 
+## Print ----------------------------------
 def print_from_DB(table_name):
         cursor = connection.cursor()
         cursor.execute(f"SELECT Product, Price, Product_ID FROM {table_name}")
@@ -70,12 +76,8 @@ def print_from_DB(table_name):
 
         print(mytable)
 
-def print_list(list):
-        index = 0
-        for x in list:
-            print(index, x)
-            index += 1
 
+## Create Order --------------------------
 def create_order():
         
         Customer_Name = input("Please enter the Customer's name\n")
@@ -87,7 +89,9 @@ def create_order():
         Order_Data = [Customer_Name, Address, Phone_Number, Order_Status, Courier_ID, Order_Placed]
 
         return Order_Data
-        
+
+
+## Save Order --------------------------        
 def save_order(Order_Data, connection):
         cursor = connection.cursor()
 
@@ -95,6 +99,57 @@ def save_order(Order_Data, connection):
         val = (Order_Data)
         cursor.execute(sql, val)
 
+
+## Edit Order -------------------------
+def update_order_DB(table_name, connection):
+        cursor = connection.cursor()
+
+        print_from_order_DB(table_name)
+        
+        order_choice = input('Which order number would you like to edit?\n')
+        column_choice = input('Which column would you like to update?\n')
+        if column_choice == "Order_Placed":
+                print('Please choose a different column or enter 9 to exit')
+                column_choice = input('Which column would you like to update?\n')
+                if column_choice == "9":
+                        
+                        return
+        
+        update_value = input('What would you like to set the new value to?\n')
+
+        
+        sql = f"UPDATE {table_name} SET {column_choice} = '{update_value}' WHERE Order_Number = {order_choice}"
+        
+        cursor.execute(sql)
+        print("You have successfully updated your order")
+
+## Delete Order ----------------------------
+
+def delete_from_order_DB(table_name, connection):
+        cursor = connection.cursor()
+        
+        print_from_order_DB(table_name)
+        
+        Order_Number = input("Please enter the Order Number you would like to delete\n")
+        
+        sql = f"DELETE FROM {table_name} WHERE (Order_Number) = {Order_Number}"
+        
+        cursor.execute(sql)
+        print(f"Order Number {Order_Number} deleted")
+
+
+
+
+## Print Order List ----------------------------------
+def print_from_order_DB(table_name):
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM {table_name}")
+        mytable = from_db_cursor(cursor)
+
+        print(mytable)
+
+
+## ========================== Item Options (Add, Edit, Delete) ================================================================================
 
 def item_options(table_name):
 
@@ -126,11 +181,12 @@ def item_options(table_name):
      
 
         
-
-def clear_term(): #clears the terminal
+## =========================Terminal Clear =====================================================================================
+def clear_term(): 
     os.system('clear')
 
-def age_check(age, min_age):
+## =========================Age Check===========================================================================================
+def age_check(age, min_age): 
         min_age = 18
         try:
                 age = int(input('How old are you?'))
@@ -143,7 +199,7 @@ def age_check(age, min_age):
         else: 
                 return True
         
-
+##=========================SQL DateTime==========================================================================================
 def getdate():
     cursor = connection.cursor()
     
@@ -153,3 +209,11 @@ def getdate():
     date = cursor.fetchone()
     print('Order placed at:', date[0])
     return date[0]
+
+
+## ======================== List Print (non-DB)
+def print_list(list):
+        index = 0
+        for x in list:
+            print(index, x)
+            index += 1

@@ -1,0 +1,94 @@
+ # for key in Order.keys():
+                    
+                #     if key == 'order status'or key == 'courier':
+                #         Order['order status'] = 'Placed' 
+                #         Order['courier'] = rcourier
+                #         Order['order number'] = random.randint(1, 1000)
+                #         break
+                #     Order[key] = input(f'please enter user {key}\n')
+                # order_list['orders'].append(Order)
+                
+                
+                # orders_ext = 'Data/orders.json'
+                # with open(orders_ext) as file:
+                #     data = json.load(file)
+                
+
+                # export = 'Data/orders.json'
+                # with open(export,'w') as file:
+                #     new = json.dumps(order_list, indent='   ')
+                #     file.write(new)
+
+
+                # order_list = {}
+            # list_name = 'Data/orders.json'
+
+            # with open(list_name) as file:
+
+            #     order_list = json.load(file)
+            
+            # courier_list = 'Data/couriers.json'
+
+            # with open(courier_list) as file:
+            #     courier_list3 = []
+            #     courier_list = json.load(file)
+            #     courier_list2 = courier_list['Couriers']
+               
+            # for key in courier_list2.keys():
+            #     courier_list3.append(key)
+            
+            # rcourier = random.choice(courier_list3)
+
+
+            Order = {
+    'customer name' : 'customer name',
+    'address' : 'address',
+    'phone number' : 'phone number',
+    'order status' : 'Pending',
+    'courier' : 'none',
+    'order number' : 0
+}
+
+# order_list = {}
+                # list_name = 'Data/orders.json'
+
+                # with open(list_name) as file:
+
+                #     order_list = json.load(file)
+                # for key in order_list['orders']:
+                #     index = order_list['orders'].index(key)
+                #     print(index, sep= ',')
+                # edit_choice = int(input('Choose an order number to edit'))
+                # if edit_choice < len(order_list['orders']):
+                #     for key2 in order_list['orders'][index]:
+                    
+                #         if key2 == 'order status'or key2 == 'courier'or key2 == 'order number':
+                #             continue
+                                
+                #         order_list['orders'][index][key2] = input(f'please enter user {key2}\n')
+                # export = 'Data/orders.json'
+                # with open(export,'w') as file:
+                #     new = json.dumps(order_list, indent='   ')
+                #     file.write(new) 
+
+
+                order_list = {}
+                list_name = 'Data/orders.json'
+
+                with open(list_name) as file:
+
+                    order_list = json.load(file)
+                for key in order_list['orders']:
+                    index = order_list['orders'].index(key)
+                    print(index, sep= ',')
+                try:
+                    del_choice = int(input('Choose an order index to delete or press enter to return to main menu'))
+                except:
+                    continue
+                if del_choice < len(order_list['orders']):
+                    order_list['orders'].pop(del_choice)
+                
+                export = 'Data/orders.json'
+                with open(export,'w') as file:
+                    new = json.dumps(order_list, indent='   ')
+                    file.write(new)

@@ -1,4 +1,5 @@
 ## Imports
+from time import sleep
 import My_Functions.functions as func
 from getpass import getpass
 from passwords import User_passwords 
@@ -134,66 +135,57 @@ if User_passwords[name]==password:
             
             ord_choice = input('1) Create Order\n2) Edit Order\n3) Delete Order\n')
             
-#================================Create Order Menu =============================================================================
+#===============================Create Order Menu =============================================================================
             if ord_choice == '1':           
                 connection = func.get_DB()
-
-                Order_Data = func.create_order()
-               
-                func.save_order(Order_Data, connection)
-                func.commit_DB(connection)
-                func.close_DB(connection)
-            if ord_choice == '2':
-                
-                # order_list = {}
-                # list_name = 'Data/orders.json'
-
-                # with open(list_name) as file:
-
-                #     order_list = json.load(file)
-                # for key in order_list['orders']:
-                #     index = order_list['orders'].index(key)
-                #     print(index, sep= ',')
-                # edit_choice = int(input('Choose an order number to edit'))
-                # if edit_choice < len(order_list['orders']):
-                #     for key2 in order_list['orders'][index]:
-                    
-                #         if key2 == 'order status'or key2 == 'courier'or key2 == 'order number':
-                #             continue
-                                
-                #         order_list['orders'][index][key2] = input(f'please enter user {key2}\n')
-                # export = 'Data/orders.json'
-                # with open(export,'w') as file:
-                #     new = json.dumps(order_list, indent='   ')
-                #     file.write(new) 
-
-
-            if ord_choice == '3':
-
-                order_list = {}
-                list_name = 'Data/orders.json'
-
-                with open(list_name) as file:
-
-                    order_list = json.load(file)
-                for key in order_list['orders']:
-                    index = order_list['orders'].index(key)
-                    print(index, sep= ',')
                 try:
-                    del_choice = int(input('Choose an order index to delete or press enter to return to main menu'))
-                except:
-                    continue
-                if del_choice < len(order_list['orders']):
-                    order_list['orders'].pop(del_choice)
+                    Order_Data = func.create_order()
                 
-                export = 'Data/orders.json'
-                with open(export,'w') as file:
-                    new = json.dumps(order_list, indent='   ')
-                    file.write(new)
+                    func.save_order(Order_Data, connection)
+                    func.commit_DB(connection)
+                    func.close_DB(connection)
+                except Exception as e:
+                    print("I'm sorry, you have encountered an error. Please ensure all values were input correctly and try again")
+                    print(e) 
+                    func.close_DB(connection)
+                    sleep(2)           
+##=============================Edit Order Menu=============================================================================================================
+            
+            if ord_choice == '2':
+                connection = func.get_DB()
+                table_name = "Orders"
+               
+                try:
+                        func.update_order_DB(table_name, connection)
+                        func.commit_DB(connection)
+                        func.close_DB(connection)
+                        
+
+                        
+                    
+                except Exception as e:
+                    print("You have encountered an error, please ensure all values were input correctly and try again")
+                    print(e)
+                    func.close_DB(connection)
+                    sleep(2)
+##=========================Delete Order==========================================================================================================
+            if ord_choice == '3':
+                connection = func.get_DB()
+                table_name = "Orders"
+                
+                try:
+                    func.delete_from_order_DB(table_name, connection)
+                    func.commit_DB(connection)
+                    func.close_DB(connection)
+                except Exception as e:
+                    print("You have encountered and error, please try again")
+                    print(e)
+                    func.close_DB(connection)
+                    sleep(2)
 
                        
                         
-        
+##=====================Exit======================================================================================================================      
         
         elif menu_choice == '0':
             exitloop = True
