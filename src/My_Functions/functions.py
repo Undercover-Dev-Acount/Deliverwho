@@ -1,8 +1,9 @@
 import os
-import products
+# import products
 import pymysql
 from prettytable import from_db_cursor
 from dotenv import load_dotenv
+import random 
 
 ## DB Declaration
 load_dotenv()
@@ -32,7 +33,7 @@ def get_DB():
         except:
                 print("Can't connect to database")
                 return 0
-        cursor = connection.cursor
+        
 
 def close_DB(connection):
         connection.close()
@@ -74,6 +75,26 @@ def print_list(list):
         for x in list:
             print(index, x)
             index += 1
+
+def create_order():
+        
+        Customer_Name = input("Please enter the Customer's name\n")
+        Address = input("Please enter the Customer's address\n")
+        Phone_Number = input("Please enter the Customer's Phone Number\n")
+        Order_Status = "Placed"
+        Courier_ID = random.randint(1,3)
+        Order_Placed = getdate()
+        Order_Data = [Customer_Name, Address, Phone_Number, Order_Status, Courier_ID, Order_Placed]
+
+        return Order_Data
+        
+def save_order(Order_Data, connection):
+        cursor = connection.cursor()
+
+        sql = "INSERT INTO Orders (Customer_Name, Address, Phone_Number, Order_Status, Courier_ID, Order_Placed) VALUES (%s, %s, %s, %s, %s, %s)"
+        val = (Order_Data)
+        cursor.execute(sql, val)
+
 
 def item_options(table_name):
 
@@ -122,3 +143,13 @@ def age_check(age, min_age):
         else: 
                 return True
         
+
+def getdate():
+    cursor = connection.cursor()
+    
+    date = "SELECT SYSDATE() as dt"
+    sql = date
+    cursor.execute(sql)
+    date = cursor.fetchone()
+    print('Order placed at:', date[0])
+    return date[0]
