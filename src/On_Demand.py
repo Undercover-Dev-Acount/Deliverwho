@@ -66,7 +66,7 @@ if User_passwords[name]==password:
                 func.print_from_DB('Sandwiches')
                 
                 func.item_options('Sandwiches')
-                func.close_DB()
+                func.close_DB(connection)
             
             ## ------------------------Snacks-----------------------------
             
@@ -77,7 +77,7 @@ if User_passwords[name]==password:
                 func.print_from_DB('Snacks')
                 
                 func.item_options('Snacks')
-                func.close_DB()
+                func.close_DB(connection)
             
             ## -----------------------Soft Drinks--------------------------
             
