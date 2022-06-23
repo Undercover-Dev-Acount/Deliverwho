@@ -4,6 +4,9 @@ from prettytable import from_db_cursor
 from dotenv import load_dotenv
 import random 
 import sys
+import hashlib
+from getpass import getpass
+import json
 
 ## DB Declaration
 load_dotenv()
@@ -98,13 +101,14 @@ def save_order(Order_Data, connection):
         sql = "INSERT INTO Orders (Customer_Name, Address, Phone_Number, Order_Status, Courier_ID, Order_Placed) VALUES (%s, %s, %s, %s, %s, %s)"
         val = (Order_Data)
         cursor.execute(sql, val)
+        commit_DB(connection)
 
 
 ## Edit Order -------------------------
 def update_order_DB(table_name, connection):
         cursor = connection.cursor()
 
-        print_from_order_DB(table_name)
+        print_from_order_DB(table_name, connection)
         
         order_choice = input('Which order number would you like to edit?\n')
         column_choice = input('Which column would you like to update?\n')
@@ -121,6 +125,7 @@ def update_order_DB(table_name, connection):
         sql = f"UPDATE {table_name} SET {column_choice} = '{update_value}' WHERE Order_Number = {order_choice}"
         
         cursor.execute(sql)
+        commit_DB(connection)
         print("You have successfully updated your order")
 
 ## Delete Order ----------------------------
@@ -128,25 +133,31 @@ def update_order_DB(table_name, connection):
 def delete_from_order_DB(table_name, connection):
         cursor = connection.cursor()
         
-        print_from_order_DB(table_name)
+        print_from_order_DB(table_name, connection)
         
         Order_Number = input("Please enter the Order Number you would like to delete\n")
+        if Order_Number:
+                sql = f"DELETE FROM {table_name} WHERE (Order_Number) = {Order_Number}"
+                
+                cursor.execute(sql)
+                commit_DB(connection)
+                print(f"Order Number {Order_Number} deleted")
         
-        sql = f"DELETE FROM {table_name} WHERE (Order_Number) = {Order_Number}"
-        
-        cursor.execute(sql)
-        print(f"Order Number {Order_Number} deleted")
+        else:
+                print("No order was deleted")
 
 
 
 
 ## Print Order List ----------------------------------
-def print_from_order_DB(table_name):
+def print_from_order_DB(table_name, connection):
+        
         cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM {table_name}")
         mytable = from_db_cursor(cursor)
 
         print(mytable)
+        
 
 
 ## ========================== Item Options (Add, Edit, Delete) ================================================================================
@@ -189,7 +200,7 @@ def clear_term():
 def age_check(age, min_age): 
         min_age = 18
         try:
-                age = int(input('How old are you?'))
+                age = int(input('How old are you?\n'))
         except:
                 print('You have not entered an age')
                 return False
@@ -217,3 +228,45 @@ def print_list(list):
         for x in list:
             print(index, x)
             index += 1
+
+def log_in_check(connection):
+       
+
+        name = input('Username:\n')
+        password = getpass('Password:\n')
+
+        name = name.encode('utf-8')
+        password = password.encode('utf-8')
+        
+        hash_name = hashlib.sha1(name).hexdigest()
+        hash_pass = hashlib.sha1(password).hexdigest()
+        
+
+        hashed_db_data = get_hashed_data(connection)
+
+        if hashed_db_data[hash_name]==hash_pass:
+                return True
+        else:
+                return False
+        
+        
+
+def get_hashed_data(connection):
+        cursor = connection.cursor()
+
+        sql1 = f"SELECT User_Name FROM Passwords"
+        
+        cursor.execute(sql1)
+        hash_name_db = []
+        for row in cursor:
+                hash_name_db.append(row[0])
+        
+        sql2= f'SELECT Password FROM Passwords'
+        cursor.execute(sql2)
+        hash_pass_db = []
+        for row in cursor:
+                hash_pass_db.append(row[0])
+        
+    
+        hashed_db_data = dict(zip(hash_name_db, hash_pass_db))
+        return hashed_db_data
