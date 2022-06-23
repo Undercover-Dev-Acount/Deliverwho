@@ -19,13 +19,25 @@ database = os.environ.get("mysql_db")
 
 
 ## ===================================Login Screen=====================================================================
-name = input('Username:\n')
-password = getpass('Password:\n')
 
-## Compares name key and password value to external dictionary to grant access
-if User_passwords[name]==password: 
+connection = func.get_DB()
+
+try:
+    login = func.log_in_check(connection)
+except:
+    print('Unrecognised Username or Password: Exiting app') 
+    sleep(3)
     func.clear_term()
+    exit()
 
+if login == False:
+    print("Unrecognised Username or Password: Exiting app")
+    sleep(3)
+    func.clear_term()
+    exit()
+elif login == True:
+    func.clear_term()
+    
 ##=====================================Main Menu=====================================================================
     print('Welcome to \033[1m Deliverwho? \033[0m')
     print('Please use the terminal to select an option below:\n')
@@ -126,14 +138,14 @@ if User_passwords[name]==password:
                 continue
             
         elif menu_choice == '2':
-            print('Deliverwho v.0.9.9')
+            print('Deliverwho v.1.0.0')
             input('Press enter to return to main menu')
         elif menu_choice == '3':
             
 ##===============================Ordering Menus============================================================================================
             print('Welcome to the Deliverwho? ordering system.\n')
             
-            ord_choice = input('1) Create Order\n2) Edit Order\n3) Delete Order\n')
+            ord_choice = input('1) Create Order\n2) Edit Order\n3) Delete Order\n4) Return to Main Menu\n')
             
 #===============================Create Order Menu =============================================================================
             if ord_choice == '1':           
@@ -148,17 +160,18 @@ if User_passwords[name]==password:
                     print("I'm sorry, you have encountered an error. Please ensure all values were input correctly and try again")
                     print(e) 
                     func.close_DB(connection)
-                    sleep(2)           
+                    sleep(2)     
+                         
 ##=============================Edit Order Menu=============================================================================================================
             
             if ord_choice == '2':
-                connection = func.get_DB()
-                table_name = "Orders"
-               
+                
                 try:
-                        func.update_order_DB(table_name, connection)
-                        func.commit_DB(connection)
-                        func.close_DB(connection)
+                    connection = func.get_DB()
+                    table_name = "Orders"
+                    func.update_order_DB(table_name, connection)
+                    func.commit_DB(connection)
+                    func.close_DB(connection)
                         
 
                         
@@ -168,6 +181,8 @@ if User_passwords[name]==password:
                     print(e)
                     func.close_DB(connection)
                     sleep(2)
+                
+                
 ##=========================Delete Order==========================================================================================================
             if ord_choice == '3':
                 connection = func.get_DB()
@@ -182,15 +197,15 @@ if User_passwords[name]==password:
                     print(e)
                     func.close_DB(connection)
                     sleep(2)
-
-                       
+                
+                    
                         
 ##=====================Exit======================================================================================================================      
         
         elif menu_choice == '0':
             exitloop = True
             exit()
-       
+
         
 
 
